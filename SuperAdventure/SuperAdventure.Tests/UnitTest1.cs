@@ -8,7 +8,7 @@ namespace SuperAdventure.Tests
         [Fact]
         public void Test1()
         {
-
+        
         }
     }
 }
