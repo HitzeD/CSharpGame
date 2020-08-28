@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SuperAdventure.models
 {
-    class DeathRewards
+    internal class DeathRewards
     {
         public int Gold { get; set; }
         public int Exp { get; set; }

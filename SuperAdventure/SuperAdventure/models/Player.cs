@@ -41,8 +41,24 @@ namespace SuperAdventure.models
 
         public int DealDamage()
         {
-            Weapon.Health -= 5;
-            return Weapon.Damage;
+            if (Weapon.Health - 2 > 0)
+            {
+                Weapon.HealthLoss(2);
+            }
+            else
+            {
+                Weapon = null;
+            }
+
+            if (Weapon == null)
+            {
+                Weapon = new Weapon("Fist", 3);
+                return Weapon.Damage;
+            }
+            else
+            {
+                return Weapon.Damage;
+            }
         }
 
         public int GetWeaponHealth()

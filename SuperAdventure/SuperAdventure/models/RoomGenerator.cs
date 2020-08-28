@@ -22,17 +22,22 @@ namespace SuperAdventure.models
                 new Room("Dark Cave", "There are bats lining the ceiling!"),
                 new Room("Cemetary", "Who knew the dead were so scary!"),
                 new Room("Grocery Store", "Who would fight here?!"),
-                new Room("Mountain Top Peak", "It's so refreshing up here!")
+                new Room("Mountain Top Peak", "It's so refreshing up here!"),
+                new Room("Fire Nation", "Oww HOT HOT HOT!"),
+                new Room("Air Temple", "I've been watching too much Avatar!"),
+                new Room("Water Temple", "Who would fight here?!"),
+                new Room("Dark Valley", "It's so refreshing up here!")
             };
 
             var rand = new Random();
-            int ctr = rand.Next(0, 3);
 
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= 8; i++)
             {
+                int ctr = rand.Next(0, 7);
                 rooms.AddLast(roomList[ctr]);
             }
 
         }
+
     }
 }

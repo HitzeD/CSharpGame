@@ -20,7 +20,7 @@ namespace SuperAdventure.models
         {
             if (damage > this.Health)
             {
-                Health = 0;
+                this.Health = 0;
                 
                 if (this.GetType() == typeof(Enemy))
                 {
@@ -34,7 +34,7 @@ namespace SuperAdventure.models
             }
             else
             {
-                Health -= damage;
+                this.Health -= damage;
             }
         }
 

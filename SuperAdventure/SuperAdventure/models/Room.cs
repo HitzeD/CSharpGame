@@ -9,13 +9,16 @@ namespace SuperAdventure.models
         public string Name { get; private set; }
         public string Description { get; private set; }
         public List<Item> items { get; set; }
-
+        public List<Enemy> enemies { get; set; }
 
         public Room(string name, string descript)
         {
             Name = name;
             Description = descript;
+            items = new List<Item>();
+            enemies = new List<Enemy>();
             addItems();
+            addEnemy();
         }
 
         private void addItems()
@@ -45,9 +48,33 @@ namespace SuperAdventure.models
 
             for (int i = 0; i <= ctr; i++)
             {
-                items.Add(items[rand.Next(0, 9)]);
+                items.Add(list[rand.Next(0, 9)]);
             }
             
+        }
+
+        public void addEnemy()
+        {
+            var list = new List<Enemy>() {
+                new Enemy("Big Bossy"),
+                new Enemy("Weird Skull"),
+                new Enemy("RedFace"),
+                new Enemy("Halfy"),
+                new Enemy("WhatWhat"),
+                new Enemy("Evil Batman"),
+                new Enemy("Ganon"),
+                new Enemy("Pickle Rick"),
+                new Enemy("Meeseek"),
+                new Enemy("Rick Sanchez")
+            };
+
+            var rand = new Random();
+            int ctr = rand.Next(0, 3);
+
+            for (int i = 0; i <= ctr; i++)
+            {
+                enemies.Add(list[rand.Next(0, 9)]);
+            }
         }
     }
 }
