@@ -29,12 +29,9 @@ namespace SuperAdventure.models
                 new Room("Dark Valley", "It's so refreshing up here!")
             };
 
-            var rand = new Random();
-
-            for (int i = 0; i <= 8; i++)
+            foreach (var room in roomList)
             {
-                int ctr = rand.Next(0, 7);
-                rooms.AddLast(roomList[ctr]);
+                rooms.AddLast(room);
             }
 
         }
