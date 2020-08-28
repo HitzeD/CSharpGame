@@ -37,6 +37,18 @@ namespace SuperAdventure
             
             lblLocation.Content = currentRoom.Name;
             lblLocDescript.Content = currentRoom.Description;
+
+            txtEnemies.Text = "";
+            txtItems.Text = "";
+            foreach (var enemy in currentRoom.enemies)
+            {
+                txtEnemies.Text += $"{enemy.Name} - Health: {enemy.Health} - Weapon:{Environment.NewLine}";
+            }
+
+            foreach (var items in currentRoom.items)
+            {
+                txtItems.Text += $"{items.Name}{Environment.NewLine}";
+            }
         }
 
         private void btnAttack_Click(object sender, RoutedEventArgs e)

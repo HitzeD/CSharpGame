@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuperAdventure"
         mc:Ignorable="d"
-        Title="Super Adventure" Height="800" Width="600">
+        Title="Super Adventure" Height="642" Width="600">
     <Grid Margin="20,20,20,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -40,18 +40,27 @@
         <Button x:Name="btnItem" Content="Grab Item" Grid.Column="1" HorizontalAlignment="Left" Margin="173,64,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="64" Click="btnItem_Click"/>
         <Button x:Name="btnNext" Content="Next Room" Grid.Column="1" HorizontalAlignment="Left" Margin="95,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="64" Height="24" Click="btnNext_Click"/>
         <Button x:Name="btnLast" Content="Prev Room" Grid.Column="1" HorizontalAlignment="Left" Margin="95,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="64" Height="24" Click="btnLast_Click"/>
-        <TextBlock x:Name="txtCenter" HorizontalAlignment="Center" Grid.Row="1" Text="TextBlock" 
-                   TextWrapping="Wrap" VerticalAlignment="Center" Height="266" 
-                   Width="300" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                   ScrollViewer.CanContentScroll="True" Background="Beige"
-                   IsEnabled="False"
-         />
-        <TextBlock x:Name="txtItems" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="39"
-                   Margin="19,117,0,0" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" 
-                   Width="241" Background="Bisque"
+
+        <Label Content="Items:" HorizontalAlignment="Left" Height="24" Margin="0,11,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66"/>
+        <TextBlock x:Name="txtItems" IsEnabled="False" HorizontalAlignment="Left" Height="50"
+                   Margin="49,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" 
+                   Width="306" Background="Bisque" Grid.ColumnSpan="2"
         />
-            
-        <Label Content="Items" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="10,88,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66"/>
+
+        <Label x:Name="lblEnemies" Content="Enemies:" HorizontalAlignment="Left" 
+               Height="24" Margin="0,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66"
+               />
+        <TextBlock x:Name="txtEnemies" IsEnabled="False" HorizontalAlignment="Left" Height="65"
+            Margin="0,83,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" 
+            Width="355" Background="Bisque" Grid.ColumnSpan="2" Grid.RowSpan="2"
+        />
+
+        <TextBlock x:Name="txtCenter" HorizontalAlignment="Left" Grid.Row="2" 
+                   TextWrapping="Wrap" VerticalAlignment="Top" Height="266" 
+                   Width="560" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                   ScrollViewer.CanContentScroll="True" Background="Beige"
+                   IsEnabled="False" Margin="0,113,0,0" Grid.ColumnSpan="2"
+         />
 
     </Grid>
 
