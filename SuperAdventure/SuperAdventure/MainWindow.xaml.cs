@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SuperAdventure.models;
 
 namespace SuperAdventure
 {
@@ -23,6 +24,12 @@ namespace SuperAdventure
         public MainWindow()
         {
             InitializeComponent();
+            TestModels();
+        }
+
+        public void TestModels()
+        {
+            
         }
     }
 }
