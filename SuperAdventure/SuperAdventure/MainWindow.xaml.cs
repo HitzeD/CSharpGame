@@ -25,6 +25,8 @@ namespace SuperAdventure
         private Player player = new Player("Zerku");
         public static RoomGenerator generator = new RoomGenerator();
         public Room currentRoom = generator.rooms.First();
+        public List<Enemy> enemies = new List<Enemy>();
+        public List<Item> itemList = new List<Item>();
 
         public MainWindow()
         {
@@ -38,16 +40,46 @@ namespace SuperAdventure
             lblLocation.Content = currentRoom.Name;
             lblLocDescript.Content = currentRoom.Description;
 
-            txtEnemies.Text = "";
-            txtItems.Text = "";
+            enemies.Clear();
+            itemList.Clear();
+
             foreach (var enemy in currentRoom.enemies)
             {
-                txtEnemies.Text += $"{enemy.Name} - Health: {enemy.Health} - Weapon:{Environment.NewLine}";
+                enemies.Add(enemy);
             }
+            dgEnemies.ItemsSource = enemies;
 
-            foreach (var items in currentRoom.items)
+            foreach (var item in currentRoom.items)
             {
-                txtItems.Text += $"{items.Name}{Environment.NewLine}";
+                itemList.Add(item);
+            }
+            dgItems.ItemsSource = itemList;
+
+            AddContentToBlock();
+        }
+
+        private void AddContentToBlock()
+        {
+            txtCenter.Text += $"You have entered {currentRoom.Name}. They say {currentRoom.Description}!{Environment.NewLine}{Environment.NewLine} Enemies: {Environment.NewLine}";
+            PrintEnemies();
+            PrintItems();
+            txtCenter.Text += $"--------------------------------------------{Environment.NewLine}";
+        }
+
+        private void PrintEnemies()
+        {
+            foreach(var enem in enemies)
+            {
+                txtCenter.Text += $"{enem.Name} - Health: {enem.Health}{Environment.NewLine}";
+            }
+        }
+
+        private void PrintItems()
+        {
+            txtCenter.Text += $"{Environment.NewLine}Items: {Environment.NewLine}";
+            foreach(var item in itemList)
+            {
+                txtCenter.Text += $"{item.Name}{Environment.NewLine}";
             }
         }
 
@@ -58,7 +90,7 @@ namespace SuperAdventure
 
         private void btnItem_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -67,6 +99,8 @@ namespace SuperAdventure
             {
                 currentRoom = generator.rooms.Find(currentRoom).Next.Value;
                 UpdateLabels();
+                dgItems.Items.Refresh();
+                dgEnemies.Items.Refresh();
             }
            else
             {
@@ -80,6 +114,8 @@ namespace SuperAdventure
             {
                 currentRoom = generator.rooms.Find(currentRoom).Previous.Value;
                 UpdateLabels();
+                dgItems.Items.Refresh();
+                dgEnemies.Items.Refresh();
             }
             else
             {
