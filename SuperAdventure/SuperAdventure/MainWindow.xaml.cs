@@ -88,7 +88,7 @@ namespace SuperAdventure
                 {
                     currentRoom.enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
                     dgEnemies.Items.Refresh();
-                    txtCenter.Text += $"You dealt {player.DealDamage()} with {player.GetWeapon().Name} to {currentRoom.enemies[dgEnemies.SelectedIndex].Name}{Environment.NewLine}";
+                    txtCenter.Text += $"You dealt {player.DealDamage()} damage points with {player.GetWeapon().Name} to {currentRoom.enemies[dgEnemies.SelectedIndex].Name}{Environment.NewLine}";
                     UpdatePlayerInfo();
                 }
                 else
