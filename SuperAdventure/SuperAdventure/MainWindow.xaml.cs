@@ -85,7 +85,11 @@ namespace SuperAdventure
 
         private void btnAttack_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (dgEnemies.SelectedItem != null)
+            {
+                enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
+                dgEnemies.Items.Refresh();
+            }
         }
 
         private void btnItem_Click(object sender, RoutedEventArgs e)
@@ -122,5 +126,6 @@ namespace SuperAdventure
                 MessageBox.Show("You cannot go backwards anymore", "First room Encountered");
             }
         }
+
     }
 }
