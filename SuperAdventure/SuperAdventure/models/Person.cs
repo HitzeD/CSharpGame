@@ -22,11 +22,7 @@ namespace SuperAdventure.models
             {
                 this.Health = 0;
                 
-                if (this.GetType() == typeof(Enemy))
-                {
-                    DeathScene();
-                }
-                else if (this.GetType() == typeof(Player))
+                if (this.GetType() == typeof(Player))
                 {
                     MessageBox.Show("You have died, please start over.", "OOps!");
                     Application.Current.MainWindow.Show();
@@ -38,12 +34,12 @@ namespace SuperAdventure.models
             }
         }
 
-        private DeathRewards DeathScene()
-        {
-            var rand = new Random();
-            var rewards = new DeathRewards(rand.Next(15, 100), rand.Next(5, 20));
+        //private DeathRewards DeathScene()
+        //{
+        //    var rand = new Random();
+        //    var rewards = new DeathRewards(rand.Next(15, 100), rand.Next(5, 20));
 
-            return rewards;
-        }
+        //    return rewards;
+        //}
     }
 }

@@ -87,14 +87,42 @@ namespace SuperAdventure
         {
             if (dgEnemies.SelectedItem != null)
             {
-                enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
-                dgEnemies.Items.Refresh();
+                if (enemies[dgEnemies.SelectedIndex].Health - player.DealDamage() > 0)
+                {
+                    enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
+                    dgEnemies.Items.Refresh();
+                    txtCenter.Text += $"You dealt {player.DealDamage()} with {player.GetWeapon().Name} to {enemies[dgEnemies.SelectedIndex].Name}{Environment.NewLine}";
+                }
+                else
+                {
+                    var rewards = new DeathRewards();
+                    player.GainExp(rewards.Exp);
+                    player.GetGold(rewards.Gold);
+                    txtCenter.Text += $"You killed {enemies[dgEnemies.SelectedIndex].Name}!{Environment.NewLine}You gained {rewards.Gold} Gold & {rewards.Exp} Exp!{Environment.NewLine}";
+                    enemies.Remove(enemies[dgEnemies.SelectedIndex]);
+                    dgEnemies.Items.Refresh();
+
+                }
             }
         }
 
         private void btnItem_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (dgItems.SelectedItem != null)
+            {
+                player.GrabItem(itemList[dgItems.SelectedIndex]);
+
+                if (itemList[dgItems.SelectedIndex].GetType() == typeof(Relic))
+                {
+                    txtCenter.Text += $" You picked up {itemList[dgItems.SelectedIndex].Name}{Environment.NewLine}";
+                }
+                else if (itemList[dgItems.SelectedIndex].GetType() == typeof(Weapon))
+                {
+                    txtCenter.Text += $"You picked up a weapon named {itemList[dgItems.SelectedIndex].Name} with {player.GetWeapon().Damage}{Environment.NewLine}";
+                }
+                itemList.Remove(itemList[dgItems.SelectedIndex]);
+                dgItems.Items.Refresh();
+            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

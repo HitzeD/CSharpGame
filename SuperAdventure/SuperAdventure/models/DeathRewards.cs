@@ -10,10 +10,11 @@ namespace SuperAdventure.models
         public int Exp { get; set; }
 
 
-        public DeathRewards(int gold, int exp)
+        public DeathRewards()
         {
-            this.Gold = gold;
-            this.Exp = exp;
+            var rand = new Random();
+            this.Gold = rand.Next(20, 100);
+            this.Exp = rand.Next(10, 30);
         }
     }
 }

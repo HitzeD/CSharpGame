@@ -42,7 +42,7 @@
         <Button x:Name="btnLast" Content="Prev Room" Grid.Column="1" HorizontalAlignment="Left" Margin="95,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="64" Height="24" Click="btnLast_Click"/>
 
         <Label Content="Items:" HorizontalAlignment="Left" Height="24" Margin="51,248,0,0" Grid.Row="2" VerticalAlignment="Top" Width="66" Grid.Column="1"/>
-        <DataGrid x:Name="dgItems" HorizontalAlignment="Left" Height="108"
+        <DataGrid x:Name="dgItems" HorizontalAlignment="Left" Height="108" SelectionUnit="FullRow"
                    Margin="56,277,0,0" Grid.Row="2" VerticalAlignment="Top" 
                    Width="90" ScrollViewer.CanContentScroll="True" Grid.Column="1" SelectionMode="Single"
         />
