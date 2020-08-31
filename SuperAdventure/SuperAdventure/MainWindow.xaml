@@ -59,6 +59,11 @@
             />
         </ScrollViewer>
         <DataGrid x:Name="dgEnemies" HorizontalAlignment="Left" Height="100" Margin="40,119,0,0" Grid.Row="2" SelectionUnit="FullRow" VerticalAlignment="Top" Width="120" Grid.Column="1" />
+        <Label x:Name="lblWeapon" HorizontalAlignment="Left" Height="24" Margin="130,0,0,0" VerticalAlignment="Top" Width="110" />
+        <Label x:Name="lblDamage" HorizontalAlignment="Left" Height="24" Margin="180,26,0,0" VerticalAlignment="Top" Width="60" />
+        <Label Content="Damage:" HorizontalAlignment="Left" Margin="107,24,0,0" VerticalAlignment="Top" Width="73"/>
+        <Label Content="Health" HorizontalAlignment="Left" Margin="107,45,0,0" VerticalAlignment="Top" Width="51"/>
+        <Label x:Name="lblWeaponHealth" HorizontalAlignment="Left" Margin="180,45,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 

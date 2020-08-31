@@ -25,8 +25,6 @@ namespace SuperAdventure
         private Player player = new Player("Zerku");
         public static RoomGenerator generator = new RoomGenerator();
         public Room currentRoom = generator.rooms.First();
-        public List<Enemy> enemies = new List<Enemy>();
-        public List<Item> itemList = new List<Item>();
 
         public MainWindow()
         {
@@ -34,26 +32,25 @@ namespace SuperAdventure
             UpdateLabels();
         }
 
+        public void UpdatePlayerInfo()
+        {
+            lblExp.Content = player.Exp;
+            lblGold.Content = player.Gold;
+            lblLevel.Content = player.PlayerLevel;
+            lblWeapon.Content = player.GetWeapon().Name;
+            lblDamage.Content = player.GetWeapon().Damage;
+            lblWeaponHealth.Content = player.GetWeapon().Health;
+        }
+
         public void UpdateLabels()
         {
             
             lblLocation.Content = currentRoom.Name;
             lblLocDescript.Content = currentRoom.Description;
+            UpdatePlayerInfo();
 
-            enemies.Clear();
-            itemList.Clear();
-
-            foreach (var enemy in currentRoom.enemies)
-            {
-                enemies.Add(enemy);
-            }
-            dgEnemies.ItemsSource = enemies;
-
-            foreach (var item in currentRoom.items)
-            {
-                itemList.Add(item);
-            }
-            dgItems.ItemsSource = itemList;
+            dgEnemies.ItemsSource = currentRoom.enemies;
+            dgItems.ItemsSource = currentRoom.items;
 
             AddContentToBlock();
         }
@@ -68,7 +65,7 @@ namespace SuperAdventure
 
         private void PrintEnemies()
         {
-            foreach(var enem in enemies)
+            foreach(var enem in currentRoom.enemies)
             {
                 txtCenter.Text += $"{enem.Name} - Health: {enem.Health}{Environment.NewLine}";
             }
@@ -77,7 +74,7 @@ namespace SuperAdventure
         private void PrintItems()
         {
             txtCenter.Text += $"{Environment.NewLine}Items: {Environment.NewLine}";
-            foreach(var item in itemList)
+            foreach(var item in currentRoom.items)
             {
                 txtCenter.Text += $"{item.Name}{Environment.NewLine}";
             }
@@ -87,21 +84,27 @@ namespace SuperAdventure
         {
             if (dgEnemies.SelectedItem != null)
             {
-                if (enemies[dgEnemies.SelectedIndex].Health - player.DealDamage() > 0)
+                if (currentRoom.enemies[dgEnemies.SelectedIndex].Health - player.DealDamage() > 0)
                 {
-                    enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
+                    currentRoom.enemies[dgEnemies.SelectedIndex].LoseHealth(player.DealDamage());
                     dgEnemies.Items.Refresh();
-                    txtCenter.Text += $"You dealt {player.DealDamage()} with {player.GetWeapon().Name} to {enemies[dgEnemies.SelectedIndex].Name}{Environment.NewLine}";
+                    txtCenter.Text += $"You dealt {player.DealDamage()} with {player.GetWeapon().Name} to {currentRoom.enemies[dgEnemies.SelectedIndex].Name}{Environment.NewLine}";
+                    UpdatePlayerInfo();
                 }
                 else
                 {
                     var rewards = new DeathRewards();
                     player.GainExp(rewards.Exp);
                     player.GetGold(rewards.Gold);
-                    txtCenter.Text += $"You killed {enemies[dgEnemies.SelectedIndex].Name}!{Environment.NewLine}You gained {rewards.Gold} Gold & {rewards.Exp} Exp!{Environment.NewLine}";
-                    enemies.Remove(enemies[dgEnemies.SelectedIndex]);
+                    txtCenter.Text += $"You killed {currentRoom.enemies[dgEnemies.SelectedIndex].Name}!{Environment.NewLine}You gained {rewards.Gold} Gold & {rewards.Exp} Exp!{Environment.NewLine}";
+                    currentRoom.enemies.Remove(currentRoom.enemies[dgEnemies.SelectedIndex]);
                     dgEnemies.Items.Refresh();
+                    UpdatePlayerInfo();
 
+                    if (currentRoom.enemies.Count == 0)
+                    {
+                        txtCenter.Text += "Congrats, you have cleared this room!";
+                    }
                 }
             }
         }
@@ -110,18 +113,19 @@ namespace SuperAdventure
         {
             if (dgItems.SelectedItem != null)
             {
-                player.GrabItem(itemList[dgItems.SelectedIndex]);
+                player.GrabItem(currentRoom.items[dgItems.SelectedIndex]);
 
-                if (itemList[dgItems.SelectedIndex].GetType() == typeof(Relic))
+                if (currentRoom.items[dgItems.SelectedIndex].GetType() == typeof(Relic))
                 {
-                    txtCenter.Text += $" You picked up {itemList[dgItems.SelectedIndex].Name}{Environment.NewLine}";
+                    txtCenter.Text += $" You picked up {currentRoom.items[dgItems.SelectedIndex].Name}{Environment.NewLine}";
                 }
-                else if (itemList[dgItems.SelectedIndex].GetType() == typeof(Weapon))
+                else if (currentRoom.items[dgItems.SelectedIndex].GetType() == typeof(Weapon))
                 {
-                    txtCenter.Text += $"You picked up a weapon named {itemList[dgItems.SelectedIndex].Name} with {player.GetWeapon().Damage}{Environment.NewLine}";
+                    txtCenter.Text += $"You picked up a weapon named {currentRoom.items[dgItems.SelectedIndex].Name} with {player.GetWeapon().Damage}{Environment.NewLine}";
                 }
-                itemList.Remove(itemList[dgItems.SelectedIndex]);
+                currentRoom.items.Remove(currentRoom.items[dgItems.SelectedIndex]);
                 dgItems.Items.Refresh();
+                UpdatePlayerInfo();
             }
         }
 
