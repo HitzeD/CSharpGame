@@ -48,7 +48,17 @@ namespace SuperAdventure.models
 
             for (int i = 0; i <= ctr; i++)
             {
-                items.Add(list[rand.Next(0, 9)]);
+                var newCount = rand.Next(0, 9);
+
+                if (!items.Contains(list[newCount]))
+                {
+                    items.Add(list[newCount]);
+                }
+                else
+                {
+                    i--;
+                }
+                
             }
             
         }
@@ -75,14 +85,14 @@ namespace SuperAdventure.models
             {
                 var newCount = rand.Next(0, 9);
 
-                if (enemies.Contains(list[newCount]))
+                if (!enemies.Contains(list[newCount]))
                 {
                     enemies.Add(list[newCount]);
                 }
-                //else
-                //{
-                //    i--;
-                //}
+                else
+                {
+                    i--;
+                }
             }
         }
     }

@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SuperAdventure.models;
 
 namespace SuperAdventure
@@ -40,11 +29,11 @@ namespace SuperAdventure
             lblWeapon.Content = player.GetWeapon().Name;
             lblDamage.Content = player.GetWeapon().Damage;
             lblWeaponHealth.Content = player.GetWeapon().Health;
+            dgRelics.ItemsSource = player.Relics;
         }
 
         public void UpdateLabels()
         {
-            
             lblLocation.Content = currentRoom.Name;
             lblLocDescript.Content = currentRoom.Description;
             UpdatePlayerInfo();
