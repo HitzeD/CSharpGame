@@ -23,7 +23,6 @@ C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\bin\Debug\netcor
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\bin\Debug\netcoreapp3.1\SuperAdventure.runtimeconfig.dev.json
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\bin\Debug\netcoreapp3.1\SuperAdventure.dll
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\bin\Debug\netcoreapp3.1\SuperAdventure.pdb
-C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\obj\Debug\netcoreapp3.1\SuperAdventure.csprojAssemblyReference.cache
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\dakot\Desktop\CSharpGame\SuperAdventure\SuperAdventure\obj\Debug\netcoreapp3.1\SuperAdventure_MarkupCompile.cache
